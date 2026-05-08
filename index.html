@@ -262,7 +262,7 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--color-text-primary)}
   </div>
   <div class="hdr-r">
     <div class="hdr-ytd">R2.39M</div>
-    <div class="hdr-meta">Week ending 8 May 2026 &middot; Generated 08 May 2026 14:31</div>
+    <div class="hdr-meta">Week ending 8 May 2026 &middot; Generated 08 May 2026 21:55</div>
   </div>
 </div>
 
@@ -276,6 +276,8 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--color-text-primary)}
   <button class="tab-btn"        data-tab="debtors"   onclick="showTab('debtors')">Debtors</button>
   <button class="tab-btn"        data-tab="accounts"  onclick="showTab('accounts')">Accounts</button>
   <button class="tab-btn"        data-tab="nonstock"  onclick="showTab('nonstock')">Non Stock</button>
+
+  <button class="tab-btn"        data-tab="updates"   onclick="showTab('updates')">KPI Data Updates</button>
 </div>
 
 <div class="page-main">
@@ -445,12 +447,12 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--color-text-primary)}
     </div>
     <div class="kpi">
       <div class="kpi-label">Total Lines</div>
-      <div class="kpi-value">74</div>
+      <div class="kpi-value">60</div>
       <div class="kpi-delta neu">Across all approved orders</div>
     </div>
     <div class="kpi">
       <div class="kpi-label">Total Value (Incl. VAT)</div>
-      <div class="kpi-value up">R117.4K</div>
+      <div class="kpi-value up">R97.1K</div>
       <div class="kpi-delta up">Ready for delivery</div>
     </div>
   </div>
@@ -464,7 +466,7 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--color-text-primary)}
           <th style="text-align:right">Lines</th>
           <th style="text-align:right">Value (Incl. VAT)</th>
         </tr></thead>
-        <tbody><tr><td style="font-family:var(--font-display);font-weight:700">15280</td><td>05/05/2026</td><td style="color:var(--color-text-tertiary);font-size:11px">KM027</td><td>Maliks Paint & Hardware</td><td style="text-align:right">42</td><td style="text-align:right;font-family:var(--font-display);font-weight:700">R79,289.52</td></tr><tr><td style="font-family:var(--font-display);font-weight:700">15309</td><td>07/05/2026</td><td style="color:var(--color-text-tertiary);font-size:11px">KS127</td><td>&mdash;</td><td style="text-align:right">15</td><td style="text-align:right;font-family:var(--font-display);font-weight:700">R25,850.16</td></tr><tr><td style="font-family:var(--font-display);font-weight:700">15169</td><td>28/04/2026</td><td style="color:var(--color-text-tertiary);font-size:11px">KM027</td><td>Maliks Paint & Hardware</td><td style="text-align:right">17</td><td style="text-align:right;font-family:var(--font-display);font-weight:700">R12,261.83</td></tr></tbody>
+        <tbody><tr><td style="font-family:var(--font-display);font-weight:700">15280</td><td>05/05/2026</td><td style="color:var(--color-text-tertiary);font-size:11px">KM027</td><td>Maliks Paint & Hardware</td><td style="text-align:right">42</td><td style="text-align:right;font-family:var(--font-display);font-weight:700">R79,289.52</td></tr><tr><td style="font-family:var(--font-display);font-weight:700">15327</td><td>08/05/2026</td><td style="color:var(--color-text-tertiary);font-size:11px">KM027</td><td>Maliks Paint & Hardware</td><td style="text-align:right">1</td><td style="text-align:right;font-family:var(--font-display);font-weight:700">R5,577.27</td></tr><tr><td style="font-family:var(--font-display);font-weight:700">15169</td><td>28/04/2026</td><td style="color:var(--color-text-tertiary);font-size:11px">KM027</td><td>Maliks Paint & Hardware</td><td style="text-align:right">17</td><td style="text-align:right;font-family:var(--font-display);font-weight:700">R12,261.83</td></tr></tbody>
       </table>
     </div>
   </div>
@@ -787,13 +789,158 @@ tbody td{padding:9px 14px;vertical-align:middle;color:var(--color-text-primary)}
   </div>
 </div>
 
+
+<!-- ── KPI DATA UPDATES TAB ── -->
+<div id="panel-updates" class="tab-panel">
+  <div class="sec-h">KPI Data Updates &mdash; New Customer Sign-Ups</div>
+  <div style="background:var(--color-info-bg);border:1px solid var(--color-info-bd);border-radius:var(--r-md);
+       padding:10px 16px;margin-bottom:16px;font-family:var(--font-body);font-size:12px;color:var(--color-info-fg)">
+    <strong>What this is.</strong> Record a new customer the moment you sign them up or convert them.
+    The submission is appended directly to <em>New Stores Added By Reps_Quater1_2026.xlsx</em>
+    (your <strong>Aboo</strong> tab and the <strong>Combined</strong> tab) so the office sees it immediately.
+    Leave <em>dlref</em> and <em>curef</em> blank if the customer code hasn't been created yet.
+  </div>
+
+  <div style="background:var(--color-surface-elevated);border:1px solid var(--color-border-subtle);
+              border-radius:var(--r-lg);padding:24px;max-width:680px;">
+    <form id="newStoreForm" onsubmit="submitNewStore(event)">
+      <div style="display:grid;gap:16px;">
+
+        <label style="display:block;">
+          <span style="display:block;font-family:var(--font-display);font-weight:700;
+                       font-size:11px;text-transform:uppercase;letter-spacing:0.08em;
+                       color:var(--color-text-secondary);margin-bottom:6px;">
+            Store name &mdash; Town <span style="color:var(--color-danger-fg);">*</span>
+          </span>
+          <input type="text" name="store" required maxlength="120"
+                 placeholder="e.g. Arham @ Melrose Hardware – Melrose"
+                 style="width:100%;padding:10px 12px;border:1px solid var(--color-border-default);
+                        border-radius:var(--r-md);background:var(--color-surface-base);
+                        color:var(--color-text-primary);font-family:var(--font-body);font-size:14px;
+                        box-sizing:border-box;">
+        </label>
+
+        <label style="display:block;">
+          <span style="display:block;font-family:var(--font-display);font-weight:700;
+                       font-size:11px;text-transform:uppercase;letter-spacing:0.08em;
+                       color:var(--color-text-secondary);margin-bottom:6px;">
+            Status / Notes
+          </span>
+          <textarea name="status" rows="2" maxlength="240"
+                    placeholder="e.g. COD, 30-day terms requested, awaiting first order"
+                    style="width:100%;padding:10px 12px;border:1px solid var(--color-border-default);
+                           border-radius:var(--r-md);background:var(--color-surface-base);
+                           color:var(--color-text-primary);font-family:var(--font-body);font-size:14px;
+                           box-sizing:border-box;resize:vertical;"></textarea>
+        </label>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <label style="display:block;">
+            <span style="display:block;font-family:var(--font-display);font-weight:700;
+                         font-size:11px;text-transform:uppercase;letter-spacing:0.08em;
+                         color:var(--color-text-secondary);margin-bottom:6px;">
+              dlref <span style="color:var(--color-text-tertiary);font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span>
+            </span>
+            <input type="text" name="dlref" maxlength="40" placeholder="e.g. KA109"
+                   style="width:100%;padding:10px 12px;border:1px solid var(--color-border-default);
+                          border-radius:var(--r-md);background:var(--color-surface-base);
+                          color:var(--color-text-primary);font-family:var(--font-body);font-size:14px;
+                          box-sizing:border-box;text-transform:uppercase;">
+          </label>
+          <label style="display:block;">
+            <span style="display:block;font-family:var(--font-display);font-weight:700;
+                         font-size:11px;text-transform:uppercase;letter-spacing:0.08em;
+                         color:var(--color-text-secondary);margin-bottom:6px;">
+              curef <span style="color:var(--color-text-tertiary);font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span>
+            </span>
+            <input type="text" name="curef" maxlength="40" placeholder="e.g. KA109"
+                   style="width:100%;padding:10px 12px;border:1px solid var(--color-border-default);
+                          border-radius:var(--r-md);background:var(--color-surface-base);
+                          color:var(--color-text-primary);font-family:var(--font-body);font-size:14px;
+                          box-sizing:border-box;text-transform:uppercase;">
+          </label>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;margin-top:8px;flex-wrap:wrap;">
+          <button type="submit" id="submitBtn"
+                  style="background:var(--color-brand-primary);color:var(--color-text-on-brand);
+                         border:0;padding:12px 24px;border-radius:var(--r-md);
+                         font-family:var(--font-display);font-weight:800;font-size:13px;
+                         text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;
+                         box-shadow:var(--shadow-brand);transition:all 0.15s;">
+            Submit New Customer
+          </button>
+          <span id="formMsg" style="font-family:var(--font-body);font-size:13px;"></span>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <div style="margin-top:14px;font-family:var(--font-body);font-size:11px;color:var(--color-text-tertiary);max-width:680px;">
+    Submissions are timestamped and your rep name (<strong>Aboo</strong>) is recorded automatically.
+    Office staff will populate <em>dlref</em>/<em>curef</em> in the workbook once the customer code is assigned.
+  </div>
+</div>
+
+<script>
+async function submitNewStore(ev){
+  ev.preventDefault();
+  const form = ev.target;
+  const btn  = document.getElementById('submitBtn');
+  const msg  = document.getElementById('formMsg');
+  const data = {
+    rep: 'Aboo',
+    dashboard: 'AC',
+    store:  form.store.value.trim(),
+    status: form.status.value.trim(),
+    dlref:  form.dlref.value.trim().toUpperCase(),
+    curef:  form.curef.value.trim().toUpperCase(),
+    submitted_at: new Date().toISOString(),
+  };
+  if (!data.store) {
+    msg.textContent = 'Store name is required.';
+    msg.style.color = 'var(--color-danger-fg)';
+    return;
+  }
+
+  const url = 'PASTE_HERE';
+  if (url === 'PASTE_HERE' || url === 'PASTE_HERE') {
+    msg.textContent = 'Webhook not configured yet. Contact Quintus.';
+    msg.style.color = 'var(--color-warning-fg)';
+    return;
+  }
+
+  btn.disabled = true; btn.style.opacity = '0.6';
+  msg.textContent = 'Submitting…'; msg.style.color = 'var(--color-text-secondary)';
+
+  try {
+    const r = await fetch(url, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data),
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    msg.textContent = '✓ Saved — added to Aboo and Combined sheets.';
+    msg.style.color = 'var(--color-success-fg)';
+    form.reset();
+  } catch (e) {
+    msg.textContent = 'Failed to submit (' + e.message + '). Try again or contact Quintus.';
+    msg.style.color = 'var(--color-danger-fg)';
+  } finally {
+    btn.disabled = false; btn.style.opacity = '1';
+  }
+}
+</script>
+
 </div><!-- .page-main -->
 
 <footer class="page-footer">
   <strong>Olympic Paints</strong> &mdash; Aboo Cassim Personal KPI Dashboard &mdash; Week ending 8 May 2026<br>
   Data sourced from Amazon QuickSight Weekly Sales Reports and Zoho CRM.<br>
   KPI A scoring uses year-on-year growth vs prior-year baseline. Target: exceed 10% YOY growth for commission eligibility.<br>
-  Generated 08 May 2026 14:31 &middot; <em>Confidential &mdash; for internal use only</em>
+  Generated 08 May 2026 21:55 &middot; <em>Confidential &mdash; for internal use only</em>
 </footer>
 
 <script>
@@ -1065,7 +1212,7 @@ const MR        = {"2024-3": 731513.35, "2024-4": 583780.79, "2024-5": 773227.35
 const AVAIL     = [[2024, 3], [2024, 4], [2024, 5], [2024, 6], [2024, 7], [2024, 8], [2024, 9], [2024, 10], [2024, 11], [2024, 12], [2025, 1], [2025, 2], [2025, 3], [2025, 4], [2025, 5], [2025, 6], [2025, 7], [2025, 8], [2025, 9], [2025, 10], [2025, 11], [2025, 12], [2026, 1], [2026, 2], [2026, 3], [2026, 4], [2026, 5]];
 const MN        = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const MNF       = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const APPROVED   = [{"ordno": "15280", "orddate": "05/05/2026", "accno": "KM027", "customer": "Maliks Paint & Hardware", "lines": 42, "total": 79289.52}, {"ordno": "15309", "orddate": "07/05/2026", "accno": "KS127", "customer": "", "lines": 15, "total": 25850.160000000003}, {"ordno": "15169", "orddate": "28/04/2026", "accno": "KM027", "customer": "Maliks Paint & Hardware", "lines": 17, "total": 12261.83}];
+const APPROVED   = [{"ordno": "15280", "orddate": "05/05/2026", "accno": "KM027", "customer": "Maliks Paint & Hardware", "lines": 42, "total": 79289.52}, {"ordno": "15327", "orddate": "08/05/2026", "accno": "KM027", "customer": "Maliks Paint & Hardware", "lines": 1, "total": 5577.27}, {"ordno": "15169", "orddate": "28/04/2026", "accno": "KM027", "customer": "Maliks Paint & Hardware", "lines": 17, "total": 12261.83}];
 const PURCHASERS = {"2024-3": 33, "2024-4": 28, "2024-5": 32, "2024-6": 27, "2024-7": 33, "2024-8": 34, "2024-9": 36, "2024-10": 32, "2024-11": 32, "2024-12": 33, "2025-1": 24, "2025-2": 25, "2025-3": 51, "2025-4": 46, "2025-5": 48, "2025-6": 43, "2025-7": 56, "2025-8": 53, "2025-9": 50, "2025-10": 56, "2025-11": 53, "2025-12": 47, "2026-1": 43, "2026-2": 50, "2026-3": 46, "2026-4": 39, "2026-5": 13};
 const PORTFOLIO  = 91;
 const GROWTH    = 1.3;
